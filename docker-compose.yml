@@ -1,0 +1,66 @@
+services:
+
+  wp:
+    image: wordpress:latest
+    restart: always
+    ports:
+      - ${WORDPRESS_PORT:?err}:80
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST?err}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER?err}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD?err}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME?err}
+    volumes: 
+      - ./:/var/www/html
+    networks:
+      - shared-network
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${WORDPRESS_DB_NAME?err}
+      MYSQL_USER:  ${WORDPRESS_DB_USER?err}
+      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD?err}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?err}
+    ports:
+      - ${MYSQL_PORT:?err}:3306
+    volumes:
+      - dbWpData:/var/lib/mysql
+    networks:
+      - shared-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 20s
+      timeout: 10s
+      retries: 3
+
+  wp-cli:
+    image: wordpress:cli
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST?err}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER?err}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD?err}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME?err}
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - shared-network
+    depends_on:
+      - wp
+    entrypoint: ["wp"]
+
+#Volumes
+volumes:
+  dbWpData:
+    driver: local
+  wpData:
+    driver: local
+#Docker Networks
+networks:
+  shared-network:
+    driver: bridge
+    
+  
