@@ -7,7 +7,7 @@ DOCKER_COMPOSE = docker compose
 DOCKER = docker
 WP_CLI = $(DOCKER_COMPOSE) run --rm wp-cli 
 WP_THEME = $(WP_CLI) theme
-THEME =  kiosko
+THEME =  shop
 ADMIN_EMAIL = sr.avila.g@gmail.com
 
 
@@ -34,3 +34,6 @@ install:
 # Destroy the Docker containers and volumes
 destroy:
 	$(DOCKER_COMPOSE) down --volumes
+
+activate:
+	$(WP_THEME) activate $(THEME)
