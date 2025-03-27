@@ -1,18 +1,221 @@
-.swiper {
-    width: 100%;
-    height: 400px;
+:root {
+    --primary-color: #D83344;
+    --text-color: #333333;
+    --background-color: #f5f5f7;
+    --card-background: #ffffff;
+    --hover-btn-color: #C71729;
+    --hover-btn-text-color: #fdfdfd;
+    --swiper-navigation-size: 30px;
 }
 
-.swiper-slide img {
+.mySwiper {
+    width: 100%;
+    height: auto;
+}
+
+.mySwiper .swiper-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.swiper-button-next, .swiper-button-prev {
+.mySwiper .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    width: 100%;
+  }
+
+.mySwiper .swiper-button-next, .mySwiper .swiper-button-prev {
     color: white;
 }
 
-.swiper-pagination-bullet {
+.mySwiper .swiper-pagination-bullet {
     background-color: white;
 }
+
+
+.offers-section {
+    margin: 4rem auto;
+    padding: 0 1rem;
+    position: relative;
+}
+
+
+.offers-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.offers-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.offers-nav-btns {
+    display: flex;
+    gap: 1rem;
+    position: absolute;
+    width: 7rem;
+    top: 0;
+    right: 0;
+}
+
+.swiper-nav-btn {
+    color: var(--primary-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.offers-section .swiper-button-next:hover,
+.offers-section  .swiper-button-prev:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.offers-section  .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.product-card {
+    background-color: var(--card-background);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Importante para la posición de la etiqueta */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensures consistent height */
+}
+
+.product-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.product-card__image {
+    position: relative;
+}
+
+.product-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.product-card:hover .product-card__image img {
+    transform: scale(1.05);
+}
+
+/* Mantiene la etiqueta de oferta fija en su posición */
+.product-card__badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    z-index: 10; /* Asegura que siempre esté por encima de la imagen */
+    transition: transform 0.3s ease; /* Para que no se note brusco el cambio */
+}
+
+/* Cuando la card haga hover, la etiqueta también se escalará */
+.product-card:hover .product-card__badge {
+    transform: scale(1.05);
+}
+
+.product-card__info {
+    padding: 20px;
+}
+
+.product-card__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.product-card__description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* .product-card__price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+} */
+.product-card__price-row {
+    flex-direction: row;
+    gap: 10px;
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+@media screen and (min-width: 1600px) {
+    .product-card__price-row {
+        flex-direction: row;
+    }
+}
+
+.product-card__price {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.product-card__price-regular {
+    font-size: 1rem;
+    text-decoration: line-through;
+    color: #888;
+    margin-right: 10px;
+}
+
+.product-card__price-sale {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.product-card__btn, .product-card__price-row .added_to_cart.wc-forward {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-card__btn:hover {
+    background-color: var(--hover-btn-color);
+    color: var(--hover-btn-text-color);
+}
+
+

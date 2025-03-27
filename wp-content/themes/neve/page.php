@@ -13,6 +13,7 @@ get_header();
 if (is_front_page()) { // Solo en la homepage por defecto
 	if (function_exists('is_plugin_active') && is_plugin_active('custom-plugin/custom-plugin.php')) {
 		echo do_shortcode('[banner_carousel]');
+		echo do_shortcode('[offers_carousel]');
 	}
 }
 
