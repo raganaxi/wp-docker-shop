@@ -28,7 +28,7 @@ services:
     ports:
       - ${MYSQL_PORT:?err}:3306
     volumes:
-      - dbWpData:/var/lib/mysql
+      - ./db_data:/var/lib/mysql
     networks:
       - shared-network
     healthcheck:

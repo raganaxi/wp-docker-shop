@@ -7,7 +7,7 @@ DOCKER_COMPOSE = docker compose
 DOCKER = docker
 WP_CLI = $(DOCKER_COMPOSE) run --rm wp-cli 
 WP_THEME = $(WP_CLI) theme
-THEME =  shop
+THEME =  neve
 ADMIN_EMAIL = sr.avila.g@gmail.com
 
 
@@ -25,7 +25,7 @@ wp-theme-activate:
 up:
 	$(DOCKER_COMPOSE) up -d
 init:
-	$(DOCKER_COMPOSE) up -d --build
+	$(DOCKER_COMPOSE) up -d
 	$(WP_THEME) activate $(THEME)
 
 install:
