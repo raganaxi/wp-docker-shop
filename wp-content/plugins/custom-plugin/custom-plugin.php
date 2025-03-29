@@ -22,10 +22,12 @@ require_once BANNER_MANAGER_PATH . 'includes/settings.php';
 require_once BANNER_MANAGER_PATH . 'includes/assets.php';
 require_once BANNER_MANAGER_PATH . 'shortcodes/banners-shortcode.php';
 require_once BANNER_MANAGER_PATH . 'shortcodes/offers-shortcode.php';
+require_once BANNER_MANAGER_PATH . 'includes/seeder.php';
 
 // Activar el plugin (se ejecuta al activarlo)
 function banner_manager_activate()
 {
+    product_offers_seeder(); // Llamar a la función de siembra de productos
     banner_manager_register_post_type(); // Registrar el CPT de banners
     flush_rewrite_rules(); // Limpiar reglas de URL
 }
