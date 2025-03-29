@@ -71,6 +71,12 @@ function banner_manager_save_meta_box($post_id)
 add_action('save_post', 'banner_manager_save_meta_box');
 
 
+function banner_manager_image_sizes()
+{
+    add_image_size('banner_thumbnail', 1100, 340, true); // Tamaño rectangular
+}
+add_action('after_setup_theme', 'banner_manager_image_sizes');
+
 
 function banner_manager_banners_page()
 {

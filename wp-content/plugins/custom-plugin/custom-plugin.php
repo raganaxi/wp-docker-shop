@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: Banner Manager
+ * Plugin Name: Banner & Offers Manager
  * Description: Plugin multipropósito para gestionar banners y ofertas del día.
  * Version: 1.1.0
  * Author: Antonio
