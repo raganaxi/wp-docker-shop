@@ -37,5 +37,6 @@ register_activation_hook(__FILE__, 'banner_manager_activate');
 function banner_manager_deactivate()
 {
     flush_rewrite_rules();
+    product_manager_delete_all_products(); // Eliminar todos los productos
 }
 register_deactivation_hook(__FILE__, 'banner_manager_deactivate');

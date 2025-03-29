@@ -18,32 +18,32 @@ function product_offers_seeder()
             'title' => 'Paracetamol 500mg',
             'price' => 100.00,
             'sale_price' => 75.00,
-            'image' => 'https://example.com/paracetamol.jpg',
+            'image' => 'https://res.cloudinary.com/prixz/image/upload/d_default_product_txh9zg.svg,q_auto/items/9780201379633.webp',
         ],
         [
             'title' => 'Ibuprofeno 400mg',
             'price' => 120.00,
             'sale_price' => 90.00,
-            'image' => 'https://example.com/ibuprofeno.jpg',
+            'image' => 'https://res.cloudinary.com/prixz/image/upload/d_default_product_txh9zg.svg,q_auto/items/9780201379633.webp',
         ],
         [
             'title' => 'Vitamina C 1000mg',
             'price' => 150.00,
             'sale_price' => 110.00,
-            'image' => 'https://example.com/vitamina-c.jpg',
+            'image' => 'https://res.cloudinary.com/prixz/image/upload/d_default_product_txh9zg.svg,q_auto/items/9780201379633.webp',
         ],
 
         [
             'title' => 'Amoxicilina 500mg',
             'price' => 200.00,
             'sale_price' => 150.00,
-            'image' => 'https://example.com/amoxicilina.jpg',
+            'image' => 'https://res.cloudinary.com/prixz/image/upload/w_500/q_auto/f_auto/items/7501349021570.webp',
         ],
         [
             'title' => 'Omeprazol 20mg',
             'price' => 180.00,
             'sale_price' => 130.00,
-            'image' => 'https://example.com/omeprazol.jpg',
+            'image' => 'https://res.cloudinary.com/prixz/image/upload/w_500/q_auto/f_auto/items/9780201379628.webp',
         ],
     ];
 
@@ -103,4 +103,23 @@ function product_manager_upload_image($image_url)
     }
 
     return $id;
+}
+
+
+// funcion para delete todos los productos
+function product_manager_delete_all_products()
+{
+    $args = array(
+        'post_type'      => 'product',
+        'posts_per_page' => -1,
+    );
+
+    $products = new WP_Query($args);
+
+    while ($products->have_posts()) {
+        $products->the_post();
+        wp_delete_post(get_the_ID(), true);
+    }
+
+    wp_reset_postdata();
 }
