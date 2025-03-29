@@ -18,7 +18,11 @@ Sigue estos pasos para instalar los requisitos del proyecto:
     ```bash
     docker compose up -d --build
     ```
-
+or
+ ```
+ make up
+ ```
+ 
 ## Acceso al Proyecto
 
 El proyecto estará disponible en **localhost** en el puerto **8080**.

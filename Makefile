@@ -16,6 +16,7 @@ export $(shell sed 's/=.*//' .env)
 
 # Commands
 
+
 # Build the Docker containers
 build:
 	$(DOCKER_COMPOSE) up -d --build
